@@ -7,7 +7,7 @@ class User < ApplicationRecord
   
   belongs_to :organization, optional: true
 
-  validates_presence_of :organization_name
+  validates_presence_of :organization_name, on: :create
 
   before_create :create_organization_name, unless: :created_by_invite?
 
