@@ -2,11 +2,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   attr_accessor :organization_name
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :invitable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :invite_for => 2.weeks
+  
   belongs_to :organization, optional: true
-  before_create :create_organization_name
-  validates :organization_name, presence: true
+
+  validates_presence_of :organization_name
+
+  before_create :create_organization_name, unless: :created_by_invite?
 
   private
 
