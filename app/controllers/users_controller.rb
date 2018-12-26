@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
     def index
-        @users = User.where(organization_id: current_user.organization_id)     
+        @user = User.all
     end
 
     def show
         @org = Organization.find(params[:id])
+        @user = User.find(params[:id])
     end
+
 end

@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_113814) do
+ActiveRecord::Schema.define(version: 2018_12_24_112244) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "type"
+    t.string "category_type"
   end
 
   create_table "entries", force: :cascade do |t|
     t.integer "amount"
     t.integer "category_id"
     t.string "description"
-    t.datetime "entry_date"
     t.integer "user_id"
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "organization_id"
+    t.date "entry_date"
     t.index ["category_id"], name: "index_entries_on_category_id"
     t.index ["organization_id"], name: "index_entries_on_organization_id"
     t.index ["user_id"], name: "index_entries_on_user_id"

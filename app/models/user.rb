@@ -6,6 +6,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :invite_for => 2.weeks
   
   belongs_to :organization, optional: true
+  has_many :entry, class_name: 'Entry'
+  has_many :income, class_name: 'Income'
+  has_many :expense, class_name: 'Expense'
 
   validates_presence_of :organization_name, on: :create
 
