@@ -9,12 +9,23 @@ class User < ApplicationRecord
   has_many :entry, class_name: 'Entry'
   has_many :income, class_name: 'Income'
   has_many :expense, class_name: 'Expense'
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  validates_attachment_size :avatar, :less_than => 5.megabytes
 
   validates_presence_of :organization_name, on: :create
 
   before_create :create_organization_name, unless: :created_by_invite?
+  before_update :edit_organization_name, unless: :created_by_invite?
 
   private
+
+  def edit_organization_name
+    org = Organization.find(self.organization_id)   
+    if org.save
+      org.update_attribute(:name, self.organization_name)
+    end
+  end
 
   def create_organization_name
     org = Organization.new(name: self.organization_name)

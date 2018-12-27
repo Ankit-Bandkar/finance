@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @org = Organization.find(params[:id])
+        @org = Organization.find(current_user.organization_id)
         @user = User.find(params[:id])
     end
 

@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= f.label :entry_date, "Entry Date" %>
-    <%= f.text_field :entry_date, class:"form-control"%>
+    <%= f.text_field :entry_date, class:"form-control", data: { provide: 'datepicker' }, 'data-date-format': "yyyy-mm-dd" %>
   </div>
   <br>
   <div class="form-group">

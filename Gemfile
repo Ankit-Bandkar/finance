@@ -30,6 +30,7 @@ gem 'devise-bootstrap-views'
 gem 'devise_invitable', '~> 1.7.0'
 gem 'popper_js'
 gem 'bootstrap-sass'
+gem "paperclip", "~> 6.0.0"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
