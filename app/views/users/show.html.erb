@@ -3,7 +3,7 @@
 
 <%= image_tag @user.avatar.url %>
 
-<h1>Entries</h1>
+<h1>Entries</h1> <%= link_to "Print Entry (PDF)", user_path(@user, format: "pdf"), class: "btn btn-success" %>
 <hr>
 <h2>Income</h2>
 <%= link_to 'New Income', new_income_path, class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => '#income_modal', remote: true %>
