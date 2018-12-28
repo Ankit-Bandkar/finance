@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_101130) do
+ActiveRecord::Schema.define(version: 2018_12_28_132719) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(version: 2018_12_28_101130) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.integer "users_id"
     t.integer "contact_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_contacts_on_users_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "entries", force: :cascade do |t|
