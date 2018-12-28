@@ -23,6 +23,21 @@
   <%= f.text_field :organization_name, autofocus: true, autocomplete: 'organization_name', class: 'form-control'%>
   </div>
 
+
+  <table class='table'>
+    <thead>
+      <tr>
+      <th>Contact Number</th>
+      </tr>
+    </thead>
+    <tbody class='contacts'>
+      <%= f.fields_for :contacts do |builder| %>
+        <%= render 'contact_fields', f: builder %>
+      <% end %>
+    </tbody>
+  </table>
+
+
   <div class="form-group">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -38,6 +53,7 @@
 
   <div class="actions">
     <%= f.submit "Sign up" %>
+    <%= link_to_add_association 'Add Contact', f, :contacts, class: 'btn btn-primary', data: { association_insertion_node: '.contacts', association_insertion_method: :append } %>
   </div>
 <% end %>
 
