@@ -7,12 +7,11 @@ class IncomesController < ApplicationController
     def create
         @user = User.find(current_user.id)
         @income = current_user.income.new(income_params)
+        @income.organization_id = current_user.organization_id
         if @income.save
-            flash[:success] = "Income created"
-            redirect_to @user
+            flash.now[:success] = "Entry created"
         else
-            flash[:danger] = "not created"
-            redirect_to @user
+            flash.now[:danger] = "not created"
         end
     end
 
@@ -31,10 +30,9 @@ class IncomesController < ApplicationController
     end
 
     def destroy
-        @income = Income.find(params[:id])
-        @income.destroy
-        flash[:success] = "Entry deleted"
-        redirect_to current_user
+       if @income = Income.destroy(params[:id])
+        flash.now[:success] = "Entry deleted"
+       end     
     end
 
     private

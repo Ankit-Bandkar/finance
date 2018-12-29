@@ -1,3 +1,6 @@
+<div id="errors">
+</div>
+
 <h1>Name: <%= current_user.name %></h1>
 <h1>Organization name: <%= @org.name %></h1>
 
@@ -6,81 +9,17 @@
 <h1>Entries</h1> <%= link_to "Print Entry (PDF)", user_path(@user, format: "pdf"), class: "btn btn-success" %>
 <hr>
 <h2>Income</h2>
-<%= link_to 'New Income', new_income_path, class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => '#income_modal', remote: true %>
-<div id="income_modal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-    </div>
-  </div>
+<%= link_to 'New Income', new_income_path, class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => '#edit_modal', remote: true %>
+ 
+<div id="edit_modal" class="modal fade" role="dialog"> 
 </div>
 
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Amount</th>
-      <th>Type</th>
-      <th>Category</th>
-      <th>Description</th>
-      <th>Date</th>
-    </tr>
-</thead>
-
-<tbody>
-<% @user.income.each do |entry| %>
-  <tr>
-    <td><%= entry.amount %></td>
-    <td><%= entry.type %></td>
-    <td><%= entry.category.name %></td>
-    <td><%= entry.description %></td>
-    <td><%= entry.entry_date.strftime("%F") %></td>
-    <td><%= link_to 'Edit', edit_income_path(entry), class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => '#edit_modal', remote: true %></td>
-    <div id="edit_modal" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-        </div>
-      </div>
-    </div>
-    <td><%= link_to 'Delete', income_path(entry), method: :delete, data: {confirm: "are you sure?"}, class: "btn btn-danger" %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
-
-
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Amount</th>
-      <th>Type</th>
-      <th>Category</th>
-      <th>Description</th>
-      <th>Date</th>
-    </tr>
-</thead>
+<div id="income_entries">
+<%= render 'shared/income_display' %>
+</div>
 
 <hr>
 
-<tbody>
-<% @user.expense.each do |entry| %>
-  <tr>
-    <td><%= entry.amount %></td>
-    <td><%= entry.type %></td>
-    <td><%= entry.category.name %></td>
-    <td><%= entry.description %></td>
-    <td><%= entry.entry_date.strftime("%F") %></td>
-    <td><%= link_to 'Edit', edit_expense_path(entry), class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => '#edit_modal', remote: true %></td>
-    <div id="edit_modal" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-        </div>
-      </div>
-    </div>
-    <td><%= link_to 'Delete', expense_path(entry), method: :delete, data: {confirm: "are you sure?"} ,class: "btn btn-danger" %></td>
-  </tr>
-<% end %>
-</tbody>
 <h3>Expense</h3>
 <%= link_to 'New Expense', new_expense_path, class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => '#expense_modal', remote: true %>
 <div id="expense_modal" class="modal fade" role="dialog">
@@ -89,5 +28,7 @@
     </div>
   </div>
 </div>
-<hr>
-</table>
+
+<div id="expense_entries">
+<%= render 'shared/expense_display' %>
+</div>

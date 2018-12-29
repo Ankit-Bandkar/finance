@@ -1,0 +1,2 @@
+$("#income_entries  tr[data-id='<%= @income.id %>']").remove();
+$("#errors").html("<%= escape_javascript(render('users/error')) %>");

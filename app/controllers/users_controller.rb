@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     def show
         @org = Organization.find(current_user.organization_id)
         @user = User.find(params[:id])
+        @incomes = @user.income
+        @expenses = @user.expense
         respond_to do |format|
             format.html
             format.pdf do
