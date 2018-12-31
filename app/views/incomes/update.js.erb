@@ -1,0 +1,16 @@
+<% unless @income.errors.any? %>
+    $('#edit_modal').modal("hide")
+    $("#income_entries  tr[data-id='<%= @income.id %>']").remove();
+    $('#income_table').find('tbody').append([
+    '<tr data-id=<%= @income.id %>>',
+    '<td><%= @income.amount %></td>',
+    '<td><%= @income.type %></td>',
+    '<td><%= @income.category.name %></td>',
+    '<td><%= @income.description %></td>',
+    '<td><%= @income.entry_date.strftime("%F") %></td>',
+    '<td><%= link_to 'Edit', edit_income_path(@income), class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => "#edit_modal", remote: true %></td>',
+    '<td><%= link_to 'Delete', income_path(@income), method: :delete, data: {confirm: "are you sure?"} ,class: "btn btn-danger", remote: true %></td>',
+    '</tr>'
+   ].join(''));
+   $("#errors").html("<%= escape_javascript(render('users/error')) %>");
+<% end %>

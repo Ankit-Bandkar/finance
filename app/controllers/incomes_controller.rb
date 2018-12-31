@@ -23,7 +23,6 @@ class IncomesController < ApplicationController
         @income = Income.find(params[:id])
         if @income.update_attributes(income_params)
           flash[:success] = "Entry updated"
-          redirect_to current_user
         else
           render 'edit'
         end

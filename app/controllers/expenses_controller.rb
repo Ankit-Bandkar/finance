@@ -10,10 +10,8 @@ class ExpensesController < ApplicationController
         @expense = current_user.expense.new(expense_params)
         if @expense.save
             flash[:success] = "Expense created"
-            redirect_to @user
         else
             flash[:danger] = "not created"
-            redirect_to @user
         end
     end
 
@@ -25,17 +23,15 @@ class ExpensesController < ApplicationController
         @expense = Expense.find(params[:id])
         if @expense.update_attributes(expense_params)
           flash[:success] = "Entry updated"
-          redirect_to current_user
         else
           render 'edit'
         end
     end
 
     def destroy
-        @expense = Expense.find(params[:id])
-        @expense.destroy
-        flash[:success] = "Entry deleted"
-        redirect_to current_user
+        if @expense = Expense.destroy(params[:id])
+            flash.now[:success] = "Entry deleted"
+        end   
     end
 
     private

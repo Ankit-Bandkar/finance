@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" id="expense_table">
   <thead>
     <tr>
       <th>Amount</th>
@@ -13,20 +13,14 @@
 
 <tbody>
 <% @expenses.each do |entry| %>
-  <tr>
+  <tr data-id="<%= entry.id %>">
     <td><%= entry.amount %></td>
     <td><%= entry.type %></td>
     <td><%= entry.category.name %></td>
     <td><%= entry.description %></td>
     <td><%= entry.entry_date.strftime("%F") %></td>
     <td><%= link_to 'Edit', edit_expense_path(entry), class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => '#edit_modal', remote: true %></td>
-    <div id="edit_modal" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-        </div>
-      </div>
-    </div>
-    <td><%= link_to 'Delete', expense_path(entry), method: :delete, data: {confirm: "are you sure?"} ,class: "btn btn-danger" %></td>
+    <td><%= link_to 'Delete', expense_path(entry), method: :delete, data: {confirm: "are you sure?"} ,class: "btn btn-danger", remote: true %></td>
   </tr>
 <% end %>
 </tbody>
