@@ -1,3 +1,3 @@
 class Contact < ApplicationRecord
-  belongs_to :users, optional: true
+  belongs_to :contactable, polymorphic: true
 end

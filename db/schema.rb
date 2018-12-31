@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_132719) do
+ActiveRecord::Schema.define(version: 2018_12_31_123209) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 2018_12_28_132719) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "contactable_id"
+    t.string "contactable_type"
+    t.index ["contactable_id", "contactable_type"], name: "index_contacts_on_contactable_id_and_contactable_type"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 

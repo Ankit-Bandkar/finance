@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :invite_for => 2.weeks
   
-  has_many :contacts, dependent: :destroy
+  has_many :contacts, as: :contactable, dependent: :destroy
   accepts_nested_attributes_for :contacts, allow_destroy: true, reject_if: proc { |att| att['contact_no'].blank? }
 
   belongs_to :organization, optional: true
