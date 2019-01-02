@@ -1,41 +1,28 @@
 class EntryPdf < Prawn::Document
-    def initialize(user)
-        super(top_margin: 70)
-        @user = user
-        user_name
-        entry_income_name
-        entry_income
-        entry_expense_name 
-        entry_expense 
-    end
-    
-    def user_name
-        text "Entry for #{@user.name}", size: 30, style: :bold
-    end
+	def initialize(user, entry)
+		super(top_margin: 70)
+		@user = user
+		@entry = entry
+		user_name
+		entry_income_name
+		entry_income
+	end
+	
+	def user_name
+		text "Records for #{@user.name}", size: 30, style: :bold
+	end
 
-    def entry_income_name 
-        move_down 20
-        text "Income", size: 22, style: :bold
-    end
+	def entry_income_name 
+		move_down 20
+		text "Entries", size: 22, style: :bold
+	end
 
-    def entry_income
-        move_down 10
-        table [["Amount", "Type", "Category", "Description", "Date"]] +
-        @user.income.map { |entry|
-        [entry.amount, entry.type, entry.category.name, entry.description, entry.entry_date]
-        }         
-    end
-
-    def entry_expense_name 
-        move_down 20
-        text "Expense", size: 22, style: :bold
-    end
-
-    def entry_expense
-        move_down 10
-        table [["Amount", "Type", "Category", "Description", "Date"]] +
-        @user.expense.map { |entry|
-        [entry.amount, entry.type, entry.category.name, entry.description, entry.entry_date]
-        }         
-    end
+	def entry_income
+		move_down 10
+		table([%w[Date Type Category Description Amount]] +
+		@entry.map do |entry|
+		[entry.entry_date, entry.type, entry.category.name, entry.description, entry.amount]
+		end, column_widths: [110, 110, 110, 110, 100]
+		)
+	end
 end

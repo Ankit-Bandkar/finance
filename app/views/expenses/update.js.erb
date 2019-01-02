@@ -8,7 +8,7 @@
     '<td><%= @expense.type %></td>',
     '<td><%= @expense.category.name %></td>',
     '<td><%= @expense.description %></td>',
-    '<td><%= @expense.entry_date.strftime("%F") %></td>',
+    '<td><%= @expense.entry_date %></td>',
     '<td><%= link_to 'Edit', edit_expense_path(@expense), class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => "#edit_modal", remote: true %></td>',
     '<td><%= link_to 'Delete', expense_path(@expense), method: :delete, data: {confirm: "are you sure?"} ,class: "btn btn-danger", remote: true %></td>',
     '</tr>'

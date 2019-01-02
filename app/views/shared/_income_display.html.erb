@@ -16,7 +16,7 @@
     <td><%= entry.type %></td>
     <td><%= entry.category.name %></td>
     <td><%= entry.description %></td>
-    <td><%= entry.entry_date.strftime("%F") %></td>
+    <td><%= entry.entry_date %></td>
     <td><%= link_to 'Edit', edit_income_path(entry), class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => '#edit_modal', remote: true %></td>
     <td><%= link_to 'Delete', income_path(entry), method: :delete, data: {confirm: "are you sure?"}, class: "btn btn-danger", remote: true %></td>
   </tr>

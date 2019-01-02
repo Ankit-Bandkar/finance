@@ -6,12 +6,13 @@ class UsersController < ApplicationController
     def show
         @org = Organization.find(current_user.organization_id)
         @user = User.find(params[:id])
-        @incomes = @user.income
+        @incomes = @user.income.order(entry_date: :desc)
         @expenses = @user.expense
+        @entry = @user.entry.order(entry_date: :desc)
         respond_to do |format|
             format.html
             format.pdf do
-                pdf = EntryPdf.new(@user)
+                pdf = EntryPdf.new(@user, @entry)
                 send_data pdf.render, type: "application/pdf", disposition: "inline"
             end
         end

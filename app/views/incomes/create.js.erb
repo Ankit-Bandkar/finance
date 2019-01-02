@@ -7,7 +7,7 @@
     '<td><%= @income.type %></td>',
     '<td><%= @income.category.name %></td>',
     '<td><%= @income.description %></td>',
-    '<td><%= @income.entry_date.strftime("%F") %></td>',
+    '<td><%= @income.entry_date %></td>',
     '<td><%= link_to 'Edit', edit_income_path(@income), class: "btn btn-primary", 'data-toggle' =>  "modal", 'data-target' => "#edit_modal", remote: true %></td>',
     '<td><%= link_to 'Delete', income_path(@income), method: :delete, data: {confirm: "are you sure?"} ,class: "btn btn-danger", remote: true %></td>',
     '</tr>'

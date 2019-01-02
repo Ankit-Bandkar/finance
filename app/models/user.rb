@@ -19,16 +19,8 @@ class User < ApplicationRecord
   validates_presence_of :organization_name, on: :create
 
   before_create :create_organization_name, unless: :created_by_invite?
-  before_update :edit_organization_name, unless: :created_by_invite?
 
   private
-
-  def edit_organization_name
-    org = Organization.find(self.organization_id)   
-    if org.save
-      org.update_attribute(:name, self.organization_name)
-    end
-  end
 
   def create_organization_name
     org = Organization.new(name: self.organization_name)

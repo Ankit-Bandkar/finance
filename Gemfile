@@ -34,6 +34,7 @@ gem "paperclip", "~> 6.0.0"
 gem 'prawn'
 gem 'prawn-table'
 gem 'cocoon'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

@@ -1,8 +1,11 @@
 <%= form_for @organization, local: true do |f| %>
-  <%= f.label :name, "Name" %>
-  <%= f.text_field :name %>
 
-  <h3>Contact No</h3>
+  <div class="form-group">
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name, class:"form-control" %>
+  </div>
+
+  <h3>Contact No:</h3>
   <div id='Contact'>
     <%= f.fields_for :contacts do |contact| %>
       <%= render 'contact_fields', :f => contact %>

@@ -1,2 +1,17 @@
 {
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,  
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.formatOnSave": true,
+  "editor.fontFamily": "Monaco",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "window.zoomLevel": 1.5,
+  "workbench.colorTheme": "Oceanic Next (dimmed bg)",
+  "ruby.format": "rubocop",
+  // Set the default
+  "editor.formatOnSave": false,
+  // Enable per-language
+  "[javascript]": {
+      "editor.formatOnSave": true
+  }
 }
