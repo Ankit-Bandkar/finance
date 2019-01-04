@@ -23,6 +23,16 @@ class EntryPdf < Prawn::Document
 		@entry.map do |entry|
 		[entry.entry_date, entry.type, entry.category.name, entry.description, entry.amount]
 		end, column_widths: [110, 110, 110, 110, 100]
-		)
+		) do
+     values = cells.columns(1..-1).rows(1..-1)
+     expense_entries = values.filter do |cell|
+       cell.content.to_s == 'Expense'
+     end
+     expense_entries.background_color = 'FFAAAA'
+     income_entries = values.filter do |cell|
+       cell.content.to_s == 'Income'
+     end
+     income_entries.background_color = 'AAFFAA'
+   end
 	end
 end

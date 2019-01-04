@@ -6,16 +6,18 @@ class UsersController < ApplicationController
     def show
         @org = Organization.find(current_user.organization_id)
         @user = User.find(params[:id])
-        @incomes = @user.income.order(entry_date: :desc)
-        @expenses = @user.expense
-        @entry = @user.entry.order(entry_date: :desc)
+        @incomes = @user.income.order(entry_date: :desc).includes(:category)
+        @expenses = @user.expense.order(entry_date: :desc).includes(:category)
+        @entry = @user.entry.order(entry_date: :desc).includes(:category)
         respond_to do |format|
             format.html
+            format.csv { send_data @entry.to_csv }
+            format.xml { render :xml => @user.entry }
+            format.xls { send_data @entry.to_xls(:columns => [:amount, {:category => [:name]}, :description, :entry_date], :headers => ["Amount", "Category", "Description", "Date"]), type: "application/xls", disposition: "inline" }
             format.pdf do
                 pdf = EntryPdf.new(@user, @entry)
                 send_data pdf.render, type: "application/pdf", disposition: "inline"
             end
         end
     end
-
 end

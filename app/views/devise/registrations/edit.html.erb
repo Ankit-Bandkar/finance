@@ -24,6 +24,17 @@
   <%= f.text_field :organization_name, autofocus: true, autocomplete: 'organization_name', class: 'form-control'%>
   </div>
 
+   <h3>Contact No</h3>
+  <div id='Contact'>
+    <%= f.fields_for :contacts do |contact| %>
+      <%= render 'contact_fields', :f => contact %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add contact', f, :contacts %>
+    </div>
+  </div>
+
+
   <div class="form-group">
     <%= f.label :password %>
     <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
