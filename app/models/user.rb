@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   before_create :create_organization_name, unless: :created_by_invite?
 
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
+
   private
 
   def create_organization_name

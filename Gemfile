@@ -35,6 +35,8 @@ gem 'prawn'
 gem 'prawn-table'
 gem 'cocoon'
 gem 'to_xls'
+gem 'sidekiq'
+gem 'sinatra', github: 'sinatra/sinatra'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

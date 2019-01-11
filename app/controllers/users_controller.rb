@@ -20,4 +20,10 @@ class UsersController < ApplicationController
             end
         end
     end
+
+    def test
+        TestingJob.perform_async("10-01-2019", "12-01-2019")
+        render plain: "REQUEST ADDED TO THE QUEUE"
+    end
+    
 end
