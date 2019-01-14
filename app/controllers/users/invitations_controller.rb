@@ -9,4 +9,11 @@ def configure_permitted_parameters
   devise_parameter_sanitizer.permit(:invite, keys: [:email, :organization_id])
 end
 
+def authenticate_inviter!
+  unless current_user.admin?
+    redirect_to root_path, alert: "Access Denied"    
+  end
+  super
+end
+
 end

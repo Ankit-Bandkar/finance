@@ -29,15 +29,16 @@
         <a class="navbar-brand" href="/">FinanceTracker</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
             <% if current_user %>
-            <li><%= link_to "All Users", users_path %></li>
-            <li><%= link_to "Entry", current_user %></li>
-            <li><%= link_to "Invite", new_user_invitation_path  %></li>
+            <li><%= link_to "Create entry", current_user %></li>
             <li><%= link_to "Edit profile", edit_user_registration_path %></li>
-            <li><%= link_to "Edit Organization", edit_organization_path(current_user.organization_id) %></li>
-            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
             <% end %>
+            <% if is_admin? %>
+            <li><%= link_to "Added users", users_path %></li>
+            <li><%= link_to "Invite", new_user_invitation_path  %></li>
+            <li><%= link_to "Edit organization", edit_organization_path(current_user.organization_id) %></li>
+            <% end %>
+            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
           </ul>
         </div>
       </div>

@@ -6,6 +6,7 @@ class OrganizationsController < ApplicationController
 
   def update
     @organization = Organization.find(current_user.organization_id)
+    authorize @organization
     if @organization.update_attributes(org_params)
       flash[:success] = "Organization updated"
       redirect_to current_user

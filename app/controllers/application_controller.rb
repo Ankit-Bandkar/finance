@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::Base
+    include Pundit
+    protect_from_forgery
+
+  rescue_from Pundit::NotAuthorizedError do
+    redirect_to current_user, alert: "Access denied"
+  end
+
     before_action :authenticate_user!
     before_action :configure_permitted_parameters, if: :devise_controller?
        
